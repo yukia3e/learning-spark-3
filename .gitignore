@@ -17,3 +17,5 @@ pip-selfcheck.json
 py4j*.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/virtualenv
+mnm_dataset.csv
+sf-fire-calls.csv
