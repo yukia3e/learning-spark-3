@@ -51,3 +51,6 @@ if __name__ == "__main__":
 
   ca_count_mnm_df.show(n=10, truncate=False)
   spark.stop()
+
+  # Check explain
+  count_mnm_df.explain(True)

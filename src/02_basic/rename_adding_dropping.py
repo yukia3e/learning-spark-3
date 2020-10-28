@@ -29,7 +29,6 @@ if __name__ == "__main__":
   (fire_ts_df.select("IncidentDate", "OnWatchDate",
                      "AvailableDtTS").where(F.col("IncidentDate").isNotNull()).show(5, False))
 
-
 # In Python
   (fire_ts_df
    .select(F.year('IncidentDate'))
