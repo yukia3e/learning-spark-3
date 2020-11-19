@@ -1,7 +1,17 @@
-from pyspark.sql import Row
+from pyspark.sql import Row, SparkSession
+
+spark = SparkSession.builder.appName("rows").getOrCreate()
 
 # Create a Row
-blog_row = Row(6, "Reynold", "Xin", "https://tinyurl.6", 255568, "3/2/2015", ["twitter", "LinkedIn"])
+blog_row = Row(
+    6,
+    "Reynold",
+    "Xin",
+    "https://tinyurl.6",
+    255568,
+    "3/2/2015",
+    ["twitter", "LinkedIn"],
+)
 
 # access using index for individual items blog_row[1]
 blog_row[1]

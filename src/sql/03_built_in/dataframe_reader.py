@@ -11,11 +11,13 @@ df = spark.read.format("parquet").load(file)
 df2 = spark.read.load(file)
 
 # Use CSV
-df3 = spark.read.format("csv")
-.option("inferSchema", "true")
-.option("header", "true")
-.option("mode", "PERMISSIVE")
-.load("data/csv/*")
+df3 = (
+    spark.read.format("csv")
+    .option("inferSchema", "true")
+    .option("header", "true")
+    .option("mode", "PERMISSIVE")
+    .load("data/csv/*")
+)
 
 # Use JSON
-df4 = spark.read.format("json") .load("data/json/*")
+df4 = spark.read.format("json").load("data/json/*")

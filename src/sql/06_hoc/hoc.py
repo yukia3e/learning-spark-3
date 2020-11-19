@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, ArrayType, IntegerType
 
 spark = SparkSession.builder.appName("transform").getOrCreate()
 
@@ -13,31 +14,38 @@ t_c.createOrReplaceTempView("tC")
 t_c.show()
 
 # transform
-spark.sql("""
+spark.sql(
+    """
 SELECT
   celsius,
   transform(celsius, t -> ((t * 9) div 5) + 32) as fahrenheit
 FROM tC
-""").show()
+"""
+).show()
 
 # filter
-spark.sql("""
+spark.sql(
+    """
 SELECT
   celsius,
   filter(celsius, t -> t > 38) as high
 FROM tC
-""").show()
+"""
+).show()
 
 # exists
-spark.sql("""
+spark.sql(
+    """
 SELECT
   celsius,
   exists(celsius, t -> t=38) as threshold
 FROM tC
-""").show()
+"""
+).show()
 
 # reduce
-spark.sql("""
+spark.sql(
+    """
 SELECT
   celsius,
   reduce(
@@ -47,4 +55,5 @@ SELECT
     acc -> (acc div size(celsius) * 9 div 5) + 32
   ) as avgFahrenheit
 FROM tC
-""").show()
+"""
+).show()
