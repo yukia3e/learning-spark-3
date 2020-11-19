@@ -1,7 +1,12 @@
+from pyspark.sql import SparkSession
 from pyspark.sql.types import LongType
 
+
 def cubed(s):
-  return s * s * s
+    return s * s * s
+
+
+spark = SparkSession.builder.appName("simples_samples").getOrCreate()
 
 # Register UDF
 spark.udf.register("cubed", cubed, LongType())

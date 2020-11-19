@@ -3,12 +3,17 @@
 import pandas as pd
 
 # Import various pyspark SQL functions including pandas_udf
+from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, pandas_udf
 from pyspark.sql.types import LongType
+
 
 # Declare the cubed function
 def cubed(a: pd.Series) -> pd.Series:
     return a * a * a
+
+
+spark = SparkSession.builder.appName("pandas_udf").getOrCreate()
 
 # Create the pandas UDF for the cubed function
 cubed_udf = pandas_udf(cubed, returnType=LongType())
